@@ -1,0 +1,3 @@
+[submodule "avod_ssn"]
+	path = avod_ssn
+	url = https://github.com/amuamushu/avod_ssn.git
