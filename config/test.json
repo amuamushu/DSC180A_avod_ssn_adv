@@ -1,0 +1,14 @@
+{"training":
+{
+    "pipeline_config": "./avod_ssn/avod/configs/simple/test_data.config",
+    "data_split": "train",
+    "output_dir": "./outputs"
+},
+"inference": {
+    "experiment_config": "./avod_ssn/avod/configs/simple/test_data.config",
+    "data_split": "val",
+    "output_dir": "./outputs",    
+    "ckpt_indices": "3"
+
+}
+}
