@@ -1,6 +1,7 @@
 import sys
 import os
 import json
+import shutil
 
 from avod_ssn.avod.experiments import run_evaluation, run_inference, run_training
 from utils import avod_utils
@@ -17,12 +18,12 @@ def main(targets):
             test_config = json.load(fh)
 
         # make the data target
-        avod_utils.run_main_with_command_line_args(run_training, **test_config['training])
+        avod_utils.run_main_with_command_line_args(run_training, **(test_config['training']))
         avod_utils.run_main_with_command_line_args(run_inference, **(test_config['inference']))
 
     if 'clean' in targets:
-        for file in os.listdir('outputs'):
-            os.remove(os.path.join(dir, file))
+        shutil.rmtree("./outputs")
+        os.mkdir("outputs")
     return
 
 
