@@ -1,0 +1,4 @@
+{
+    "dockerhub-id": "amytn:avod-adv:as-submodule",
+    "build-script": "python3 run.py test"
+}
