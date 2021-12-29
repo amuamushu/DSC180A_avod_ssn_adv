@@ -13,6 +13,10 @@ def main(targets):
     
     `main` runs the targets in order of data=>analysis=>model.
     '''
+    if 'clean' in targets:
+        shutil.rmtree("./outputs")
+        os.mkdir("outputs")
+        
     if 'test' in targets:
         with open('config/test.json') as fh:
             test_config = json.load(fh)
@@ -21,9 +25,6 @@ def main(targets):
         avod_utils.run_main_with_command_line_args(run_training, **(test_config['training']))
         avod_utils.run_main_with_command_line_args(run_inference, **(test_config['inference']))
 
-    if 'clean' in targets:
-        shutil.rmtree("./outputs")
-        os.mkdir("outputs")
     return
 
 
