@@ -38,6 +38,7 @@ RUN pip install --upgrade \
     tf_slim \
     tensorflow-addons
 
+RUN apt-get remove libboost-all-dev
 RUN apt-get purge libboost-all-dev
 
 RUN apt-get update && apt-get install \
@@ -54,6 +55,11 @@ ENV PYTHONPATH "${PYTHONPATH}:./"
 ENV PYTHONPATH "${PYTHONPATH}:./avod_ssn"
 ENV PYTHONPATH "${PYTHONPATH}:./avod_ssn/avod"
 ENV PYTHONPATH "${PYTHONPATH}:./avod_ssn/wavedata"
+ENV PYTHONPATH "${PYTHONPATH}:./DSC180A_avod_ssn_adv"
+ENV PYTHONPATH "${PYTHONPATH}:./DSC180A_avod_ssn_adv/avod_ssn"
+ENV PYTHONPATH "${PYTHONPATH}:./DSC180A_avod_ssn_adv/avod_ssn/avod"
+ENV PYTHONPATH "${PYTHONPATH}:./DSC180A_avod_ssn_adv/avod_ssn/wavedata"
+
 
 USER root
 
