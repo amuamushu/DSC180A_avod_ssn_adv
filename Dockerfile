@@ -17,18 +17,19 @@ LABEL maintainer="UC San Diego ITS/ETS <ets-consult@ucsd.edu>"
 USER root
 
 # TODO: install g++, build-essential
-RUN apt-get update && apt-get install \
-    protobuf-compiler \
-    build-essential \
-    g++ -y \
-    cmake \
-    libboost-all-dev
 
 # 3) install packages using notebook user
 # USER jovyan
 
 # RUN conda install -y scikit-learn
 COPY ./avod_ssn/requirements.txt .
+
+RUN pip install -r requirements.txt
+
+RUN mkdir wavedata
+COPY ./avod_ssn/wavedata/requirements.txt ./wavedata
+RUN pip install -r ./wavedata/requirements.txt
+
 RUN pip install --upgrade \
     pip \
     setuptools \
@@ -37,11 +38,14 @@ RUN pip install --upgrade \
     tf_slim \
     tensorflow-addons
 
-RUN pip install -r requirements.txt
+RUN apt-get purge libboost-all-dev
 
-RUN mkdir wavedata
-COPY ./avod_ssn/wavedata/requirements.txt ./wavedata
-RUN pip install -r ./wavedata/requirements.txt
+RUN apt-get update && apt-get install \
+    protobuf-compiler \
+    build-essential \
+    g++ -y \
+    cmake \
+    libboost-all-dev
 
 # Override command to disable running jupyter notebook at launch
 CMD ["/bin/bash"]
